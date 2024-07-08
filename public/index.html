@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I3MONEY</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<script src="javascript.js"></script>
+<body>
+    <header>
+        <div class="logo">Logo de I3MONEY</div>
+    </header>
+
+    <main>
+        <section id="inicioSesion" class="visible">
+            <div class="formulario-container">
+                <h2>Iniciar Sesión</h2>
+                <form id="formLogin" class="formulario" onsubmit="return iniciarSesion()">
+                    <label for="loginUsername">Nombre de Usuario:</label>
+                    <input type="text" id="loginUsername" name="loginUsername" required>
+                    <label for="loginPassword">Contraseña:</label>
+                    <input type="password" id="loginPassword" name="loginPassword" required>
+                    <button type="submit" class="boton">Iniciar sesión</button>
+                </form>
+                <div class="mensaje-error" id="mensajeError"></div>
+                <button class="alternar-formulario" onclick="alternarFormulario()">Registrarse</button>
+            </div>
+        </section>
+
+        <section id="registro" class="oculto">
+            <div class="formulario-container">
+                <h2>Registro de Usuario</h2>
+                <form id="formRegistro" class="formulario" onsubmit="return registrarUsuario()">
+                    <label for="username">Nombre de Usuario:</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit" class="boton">Registrarse</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="plataforma" class="oculto">
+            <div class="plataforma-container">
+                <h2>I3MONEY</h2>
+                <p>Bienvenido <span id="usuarioActual"></span></p>
+                <p>Saldo disponible: <span id="saldoActual"></span> USD</p>
+                <div class="botones-plataforma">
+                    <button class="boton verde" onclick="mostrarFormularioDeposito()">Depositar</button>
+                    <button class="boton azul" onclick="mostrarFormularioRetiro()">Retirar</button>
+                    <button class="boton gris" onclick="mostrarHistorialTransacciones()">Historial de Transacciones</button>
+                </div>
+                <button class="boton cerrar-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
+                <p id="mensajeEstado" class="mensaje-estado">Su dinero está siendo trabajado y se liberará en 48 horas.</p>
+            </div>
+        </section>
+
+        <section id="solicitud" class="oculto">
+            <div class="formulario-container">
+                <h2>Solicitud de Retiro/Depósito</h2>
+                <form id="formSolicitud" class="formulario" onsubmit="return enviarSolicitud()">
+                    <label for="tipoSolicitud">Tipo de Solicitud:</label>
+                    <input type="text" id="tipoSolicitud" name="tipoSolicitud" readonly>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" required>
+                    <label for="cedula">Cédula:</label>
+                    <input type="text" id="cedula" name="cedula" required>
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" required>
+                    <label for="cantidad">Cantidad (USD):</label>
+                    <input type="number" id="cantidad" name="cantidad" required>
+                    <button type="submit" class="boton">Enviar solicitud</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="admin" class="oculto">
+            <div class="plataforma-container">
+                <h2>Panel de Administración</h2>
+                <div id="solicitudesPendientes">
+                    <!-- Solicitudes pendientes se mostrarán aquí -->
+                </div>
+                <div class="formulario-container">
+                    <h2>Modificar Saldo de Usuario</h2>
+                    <form id="formModificarSaldo" class="formulario" onsubmit="return modificarSaldo()">
+                        <label for="usuarioModificar">Usuario:</label>
+                        <input type="text" id="usuarioModificar" name="usuarioModificar" required>
+                        <label for="nuevoSaldo">Nuevo Saldo (USD):</label>
+                        <input type="number" id="nuevoSaldo" name="nuevoSaldo" required>
+                        <button type="submit" class="boton">Modificar Saldo</button>
+                    </form>
+                </div>
+                <button class="boton cerrar-sesion" onclick="cerrarSesionAdmin()">Cerrar sesión</button>
+            </div>
+        </section>
+
+        <section id="historial" class="oculto">
+            <div class="plataforma-container">
+                <h2>Historial de Transacciones</h2>
+                <div id="historialTransacciones">
+                    <!-- Historial de transacciones se mostrará aquí -->
+                </div>
+                <button class="boton" onclick="cerrarHistorial()">Cerrar</button>
+            </div>
+        </section>
+
+        <div id="mensajeTrabajando" class="oculto">
+            <p>Su dinero está siendo trabajado y se liberará en 48 horas.</p>
+            <button class="boton" onclick="cerrarMensajeTrabajando()">Cerrar</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 I3MONEY. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
